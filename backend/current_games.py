@@ -1,8 +1,10 @@
 # Gets Current MLB Games for the day. Runs once per day, resetting at 12am CST
 
 import datetime
+from flask import Flask, jsonify
 import requests
 
+app = Flask(__name__)
 base_url = "https://statsapi.mlb.com/api/v1/schedule"
 def game_collector():
    
@@ -31,8 +33,14 @@ def game_collector():
          
          games_today.append(game_data)
    
+   return games_today
    
-   
-   print(games_today)   
-game_collector()
+# setting up an api to access the games! 
+@app.route("/games", methods=["GET"])
+def get_games():
+    games = game_collector()  
+    return jsonify(games)
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
    
