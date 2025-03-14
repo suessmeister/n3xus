@@ -3,15 +3,16 @@
 import datetime
 from flask import Flask, jsonify
 import requests
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 base_url = "https://statsapi.mlb.com/api/v1/schedule"
 def game_collector():
    
-   # date = datetime.date.today().strftime("%y-%m-%d")
-   date = "2025-03-14"
+   date = datetime.date.today().strftime("%Y-%m-%d")
    params = {
-      "date" : date,
+      "date" : str(date),
       "sportId" : 1,
    }
    
