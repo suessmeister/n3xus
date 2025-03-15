@@ -8,19 +8,94 @@
   },
   "instructions": [
     {
-      "name": "greet",
+      "name": "initialize_user",
       "discriminator": [
-        203,
-        194,
-        3,
-        150,
-        228,
-        58,
-        181,
-        62
+        111,
+        17,
+        185,
+        250,
+        60,
+        122,
+        38,
+        254
       ],
-      "accounts": [],
+      "accounts": [
+        {
+          "name": "user_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
       "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "UserAccount",
+      "discriminator": [
+        211,
+        33,
+        136,
+        16,
+        186,
+        110,
+        242,
+        127
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InsufficientFunds",
+      "msg": "Not enough funds"
+    }
+  ],
+  "types": [
+    {
+      "name": "UserAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "balance",
+            "type": "u64"
+          },
+          {
+            "name": "total_bets",
+            "type": "u64"
+          }
+        ]
+      }
     }
   ]
 }

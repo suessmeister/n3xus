@@ -14,19 +14,94 @@ export type Basic = {
   },
   "instructions": [
     {
-      "name": "greet",
+      "name": "initializeUser",
       "discriminator": [
-        203,
-        194,
-        3,
-        150,
-        228,
-        58,
-        181,
-        62
+        111,
+        17,
+        185,
+        250,
+        60,
+        122,
+        38,
+        254
       ],
-      "accounts": [],
+      "accounts": [
+        {
+          "name": "userAccount",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
       "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "userAccount",
+      "discriminator": [
+        211,
+        33,
+        136,
+        16,
+        186,
+        110,
+        242,
+        127
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "insufficientFunds",
+      "msg": "Not enough funds"
+    }
+  ],
+  "types": [
+    {
+      "name": "userAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "balance",
+            "type": "u64"
+          },
+          {
+            "name": "totalBets",
+            "type": "u64"
+          }
+        ]
+      }
     }
   ]
 };

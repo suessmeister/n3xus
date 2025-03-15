@@ -52,13 +52,13 @@ export default function BasicFeature() {
           </AppHero>
           <BasicProgram />
 
-          <h2 className="text-xl font-bold mt-6">MLB Games Today</h2>
+          <h2 className="text-xl font-bold36">MLB Games Today</h2>
           {loading ? (
             <p>Loading games...</p>
           ) : (
             <ul>
               {games.map((game: Game) => (
-                <li key={game.gameId} className="border p-2 my-2">
+                <li key={game.gameId} className="border p-7 my-2">
                   {game.awayTeam} @ {game.homeTeam} - {game.startTime}
                 </li>
               ))}
