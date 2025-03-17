@@ -26,6 +26,7 @@
     "@tanstack/react-query-next-experimental": "^5.66.9",
     "clsx": "^2.1.1",
     "daisyui": "^4.12.24",
+    "date-fns-tz": "^3.2.0",
     "framer-motion": "^12.5.0",
     "jotai": "^2.12.1",
     "lucide-react": "^0.482.0",

@@ -30,7 +30,7 @@ def game_collector():
                       "gameId": game["gamePk"],
                       "homeTeam": game["teams"]["home"]["team"]["name"],
                       "awayTeam": game["teams"]["away"]["team"]["name"], 
-                      "startTime": game["gameDate"].split('T')[1]}
+                      "startTime": game["gameDate"]}
          
          games_today.append(game_data)
    
