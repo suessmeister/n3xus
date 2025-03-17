@@ -14,31 +14,43 @@ export function UiLayout({ children, links }: { children: ReactNode; links: { la
   const pathname = usePathname()
 
   return (
-    <div className="h-full flex flex-col">
-      <div className="navbar bg-base-300 dark:text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0">
-        <div className="flex-1">
-          <Link className="btn btn-ghost normal-case text-xl" href="/">
-            N3xus
-          </Link>
-          <ul className="menu menu-horizontal px-1 space-x-2">
-            {links.map(({ label, path }) => (
-              <li key={path}>
-                <Link className={pathname.startsWith(path) ? 'active' : ''} href={path}>
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+    <div className="min-h-screen flex flex-col bg-black">
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 py-3">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-6">
+              <Link 
+                className="text-2xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-300 to-purple-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity" 
+                href="/"
+              >
+                BaseBET
+              </Link>
+              <ul className="hidden md:flex items-center space-x-1">
+                {links.map(({ label, path }) => (
+                  <li key={path}>
+                    <Link 
+                      className={`px-4 py-2 rounded-lg transition-colors ${pathname.startsWith(path) 
+                        ? 'bg-emerald-400/10 text-emerald-400' 
+                        : 'text-gray-400 hover:text-white hover:bg-white/5'}`} 
+                      href={path}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex items-center space-x-3">
+              <WalletButton />
+              <ClusterUiSelect />
+            </div>
+          </div>
         </div>
-        <div className="flex-none space-x-2">
-          <WalletButton />
-          <ClusterUiSelect />
-        </div>
-      </div>
+      </nav>
       <ClusterChecker>
         <AccountChecker />
       </ClusterChecker>
-      <div className="flex-grow mx-4 lg:mx-auto">
+      <div className="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
         <Suspense
           fallback={
             <div className="text-center my-32">
@@ -84,17 +96,26 @@ export function AppModal({
 
   return (
     <dialog className="modal" ref={dialogRef}>
-      <div className="modal-box space-y-5">
-        <h3 className="font-bold text-lg">{title}</h3>
+      <div className="backdrop-blur-xl bg-black/40 border border-white/10 rounded-xl p-6 max-w-md w-full text-white space-y-5">
+        <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-300 to-purple-500 bg-clip-text text-transparent">
+          {title}
+        </h3>
         {children}
-        <div className="modal-action">
-          <div className="join space-x-2">
+        <div className="flex justify-end space-x-3 pt-4">
+          <div className="flex space-x-2">
             {submit ? (
-              <button className="btn btn-xs lg:btn-md btn-primary" onClick={submit} disabled={submitDisabled}>
+              <button 
+                className="px-4 py-2 rounded-lg bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 hover:bg-emerald-400/20 transition-colors disabled:opacity-50" 
+                onClick={submit} 
+                disabled={submitDisabled}
+              >
                 {submitLabel || 'Save'}
               </button>
             ) : null}
-            <button onClick={hide} className="btn">
+            <button 
+              onClick={hide} 
+              className="px-4 py-2 rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 transition-colors"
+            >
               Close
             </button>
           </div>
@@ -114,12 +135,22 @@ export function AppHero({
   subtitle: ReactNode
 }) {
   return (
-    <div className="hero py-[64px]">
-      <div className="hero-content text-center">
-        <div className="max-w-2xl">
-          {typeof title === 'string' ? <h1 className="text-5xl font-bold">{title}</h1> : title}
-          {typeof subtitle === 'string' ? <p className="py-6">{subtitle}</p> : subtitle}
-          {children}
+    <div className="py-16">
+      <div className="text-center">
+        <div className="max-w-3xl mx-auto px-4">
+          {typeof title === 'string' ? (
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-300 to-purple-500 bg-clip-text text-transparent mb-4">
+              {title}
+            </h1>
+          ) : (
+            title
+          )}
+          {typeof subtitle === 'string' ? (
+            <p className="text-lg text-emerald-400/80">{subtitle}</p>
+          ) : (
+            subtitle
+          )}
+          <div className="mt-8">{children}</div>
         </div>
       </div>
     </div>
@@ -138,7 +169,11 @@ export function useTransactionToast() {
     toast.success(
       <div className={'text-center'}>
         <div className="text-lg">Transaction sent</div>
-        <ExplorerLink path={`tx/${signature}`} label={'View Transaction'} className="btn btn-xs btn-primary" />
+        <ExplorerLink 
+          path={`tx/${signature}`} 
+          label={'View Transaction'} 
+          className="px-3 py-1.5 rounded-lg bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-sm hover:bg-emerald-400/20 transition-colors" 
+        />
       </div>,
     )
   }

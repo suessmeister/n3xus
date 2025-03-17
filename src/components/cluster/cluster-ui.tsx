@@ -27,9 +27,16 @@ export function ClusterChecker({ children }: { children: ReactNode }) {
   const { connection } = useConnection()
 
   const query = useQuery({
-    queryKey: ['version', { cluster, endpoint: connection.rpcEndpoint }],
-    queryFn: () => connection.getVersion(),
+    queryKey: ['version', { cluster: cluster.name, endpoint: cluster.endpoint }],
+    queryFn: async () => {
+      if (!connection) {
+        throw new Error('Connection not initialized')
+      }
+      return connection.getVersion()
+    },
     retry: 1,
+    enabled: !!connection && !!cluster.endpoint,
+    staleTime: 10000, // Cache the result for 10 seconds
   })
   if (query.isLoading) {
     return null
