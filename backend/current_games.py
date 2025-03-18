@@ -41,6 +41,13 @@ def game_collector():
 def get_games():
     games = game_collector()  
     return jsonify(games)
+ 
+@app.route("/games/<int:game_id>", methods=["GET"])
+def get_game(game_id):
+    for game in game_collector():
+       if (game["gameId"] == game_id):
+          return jsonify(game)
+    return jsonify({"error": "Game not found"})
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
