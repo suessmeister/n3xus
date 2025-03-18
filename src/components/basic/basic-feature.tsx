@@ -143,13 +143,14 @@ export default function BasicFeature() {
     <div>
       {publicKey ? (
         <>
-          <AppHero title="Today's Suite" subtitle={'more buttons to come soon!'}>
-            <p className="mb-6">
+          {/* <AppHero title="Today's Suite" subtitle={''}> */}
+            {/* These contained the solana docs stuff. Uncomment later?  */}
+            {/* <p className="mb-6">
               <ExplorerLink path={`account/${programId}`} label={ellipsify(programId.toString())} />
-            </p>
-            <BasicCreate />
-          </AppHero>
-          <BasicProgram />
+            </p> */}
+            {/* <BasicCreate /> */}
+          {/* </AppHero> */} 
+          {/* /* <BasicProgram /> */}
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex justify-between items-center mb-6">

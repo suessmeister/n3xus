@@ -25,9 +25,9 @@ export function BasicProgram() {
       </div>
     )
   }
-  // return (
-  //   <div className={'space-y-6'}>
-  //     <pre>{JSON.stringify(getProgramAccount.data.value, null, 2)}</pre>
-  //   </div>
-  // )
+  return (
+    <div className={'space-y-6'}>
+      <pre>{JSON.stringify(getProgramAccount.data.value, null, 2)}</pre>
+    </div>
+  )
 }
