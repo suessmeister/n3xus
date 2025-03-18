@@ -7,8 +7,6 @@ from flask_cors import CORS
 
 import time
 
-app = Flask(__name__)
-CORS(app)
 
 def error_response(status_code, message):
     return jsonify({'error': message}), status_code
@@ -30,7 +28,6 @@ def get_live_data(game_id):
       get_live_data(game_id)
    
    
-   #we're live! 
    get_current_play(game)
    
 def get_current_play(game):
@@ -41,13 +38,13 @@ def get_current_play(game):
    isPitch = current_play['playEvents'][-1]['isPitch']
    strike = current_play['playEvents'][-1]['details']['isStrike']
    ball = current_play['playEvents'][-1]['details']['isBall']
-   # result = current_play['result']
+   
    print("isPitch: ", isPitch)
    print("strike: ", strike)
    print("ball: ", ball)
-   # print("result: ", result)
    
-get_live_data(778815)
+   
+
 
 
 
