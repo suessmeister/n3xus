@@ -6,9 +6,12 @@ import { SolanaProvider } from '@/components/solana/solana-provider'
 import { UiLayout } from '@/components/ui/ui-layout'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useState } from 'react'
+import { Toaster } from 'react-hot-toast'
 
 const links: { label: string; path: string }[] = [
   { label: 'Today\'s Lineup', path: '/lineup' },
+  { label: 'Multiplayer', path: '/multiplayer' },
+  { label: 'Leaderboard', path: '/leaderboard' },
 ]
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -28,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ClusterProvider>
             <SolanaProvider>
               <UiLayout links={links}>{children}</UiLayout>
+              <Toaster position="top-right" />
             </SolanaProvider>
           </ClusterProvider>
         </QueryClientProvider>
