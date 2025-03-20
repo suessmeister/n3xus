@@ -26,7 +26,7 @@ const getGameStatus = (startTime: string) => {
 export default function StrikeZone({ gameId, homeTeam, awayTeam, startTime }: StrikeZoneProps) {
    const status = getGameStatus(startTime);
 
-   const statuses= {
+   const statuses = {
       'live': {
          color: 'bg-red-600',
          text: 'Game In Progress'
